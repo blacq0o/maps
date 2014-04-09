@@ -1,0 +1,197 @@
+<html>
+<head>
+<title>MimarSinanMerkez</title>
+
+<!--Set up the CSS styles-->
+<style type="text/css">
+      html { 
+	      height: 100%;
+		
+	  }
+      
+	  body {
+		  height: 100%;
+		 
+		  margin: 0; 
+		  padding: 0;
+		  background-color: #B3CDE6;
+		  background-attachment: fixed;
+		  background-position: right bottom; 
+	      background-size: cover;
+	  }
+      
+
+	  #mimar-sinan { 
+	  	  height: 100%;/* Haritanın Yüksekliği*\
+		  width: 100%; /* Haritanın genişliği*\
+		  margin-left: auto;
+          margin-right: auto;
+		  border-right-width: 2px;
+		  border-right-color: #ffffff;
+		  border-right-style: solid;
+		  border-left-width: 2px;
+		  border-left-color: #ffffff;
+		  border-left-style: solid;
+	  }
+	  
+	  .pop_up_box_text {
+	 	  font-family: Georgia, 'Comic Sans', Times, serif; 
+	 	  font-size: 16px; 
+		  line-height: 22px; 
+	 	  color: #ffffff; 
+	 	  display: inline; 
+	  }
+
+</style>
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD35BMLXGK9yS1xCSBrmqfZJgv5UGHQdPM&sensor=true"></script>
+
+<script src="infobox/infobox.js" type="text/javascript"></script>
+<script type="text/javascript">
+
+
+var MimarsinanCenter = new google.maps.LatLng(41.013788, 28.558435);
+//Hangi Koordinata odaklanıcağı
+
+var MimarsinanZoom = 6;
+// Koordinata ne kadar yaklaşacağı
+var MimarsinanZoomMax = 18; // Maximum zoom miktarı
+var MimarsinanZoomMin = 6; // Minimum zoom miktarı
+
+//These options configure the setup of the map. 
+var MimarsinanOptions = { 
+		  center: MimarsinanCenter, 
+          zoom: MimarsinanZoom,
+		  //The type of map. In addition to ROADMAP, the other 'premade' map styles are SATELLITE, TERRAIN and HYBRID. 
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+		  maxZoom:MimarsinanZoomMax,
+		  minZoom:MimarsinanZoomMin,
+		  //Turn off the map controls as we will be adding our own later.
+		  panControl: true,
+		  mapTypeControl: false,
+};
+
+
+var Mimarsinan;
+
+//When the page loads, the line below calls the function below called 'loadMimarsinan' to load up the map.
+google.maps.event.addDomListener(window, 'load', loadMimarsinan);
+
+
+
+//THE MAIN FUNCTION THAT IS CALLED WHEN THE WEB PAGE LOADS --------------------------------------------------------------------------------
+function loadMimarsinan() {
+	
+//The empty map variable ('Mimarsinan') was created above. The line below creates the map, assigning it to this variable. The line below also loads the map into the div with the id 'festival-map' (see code within the 'body' tags below), and applies the 'MimarsinanOptions' (above) to configure this map. 
+Mimarsinan = new google.maps.Map(document.getElementById("mimar-sinan"), MimarsinanOptions);	
+
+
+
+loadMapMarkers();
+
+}
+
+
+
+
+function loadMapMarkers (){
+
+//GLASTONBURY -----------------
+
+var evim = new google.maps.LatLng(41.013788, 28.558435);
+		YeniYer = new google.maps.Marker({
+		position:evim,
+		map:Mimarsinan,
+		title:'Evim'
+
+
+});
+
+
+var nigde = new google.maps.LatLng(38.072515, 34.816830);
+
+
+var markerIconGlastonbury = {
+  url: 'icons/nigde.png',
+  size: new google.maps.Size(225, 120),
+  origin: new google.maps.Point(0, 0),//origin noktaları
+  anchor: new google.maps.Point(90, 116)//height ve weight te göre ayarlama
+};
+
+//Setting the shape to be used with the Glastonbury map marker.
+var markerShapeGlastonbury = {
+      coord: [12,4,216,22,212,74,157,70,184,111,125,67,6,56],
+      type: 'poly'
+};
+
+markerGlastonbury = new google.maps.Marker({
+	  position: nigde,
+      map: Mimarsinan,
+      title: 'Nigde Ovacik',
+	  icon: markerIconGlastonbury,
+	  shape: markerShapeGlastonbury,
+	  zIndex:102
+});
+
+var galata = new google.maps.LatLng(41.025648, 28.974131);
+
+
+var markerIconGlastonbury = {
+  url: 'icons/galata1.png',
+  size: new google.maps.Size(225, 120),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(70, 85)
+};
+
+var markerShapeGlastonbury = {
+      coord: [12,4,216,22,212,74,157,70,184,111,125,67,6,56],
+      type: 'poly'
+};
+
+markerGlastonbury = new google.maps.Marker({
+	  position: galata,
+      map: Mimarsinan,
+      title: 'Galata Kulesi',
+	  icon: markerIconGlastonbury,
+	  shape: markerShapeGlastonbury,
+	  zIndex:102
+});
+
+var antalya = new google.maps.LatLng(36.532482, 31.990844);
+
+
+var markerIconGlastonbury = {
+  url: 'icons/antalya1.png',
+  size: new google.maps.Size(225, 120),
+  origin: new google.maps.Point(0, 0),
+  anchor: new google.maps.Point(0, 50)
+};
+
+
+var markerShapeGlastonbury = {
+      coord: [12,4,216,22,212,74,157,70,184,111,125,67,6,56],
+      type: 'poly'
+};
+
+//Creating the Glastonbury map marker.
+markerGlastonbury = new google.maps.Marker({
+	  position: antalya,
+      map: Mimarsinan,
+      title: 'Antalya Kalesi',
+	  icon: markerIconGlastonbury,
+	  shape: markerShapeGlastonbury,
+	  zIndex:102
+});
+
+}
+
+
+</script>
+
+</head>
+<body>  
+    
+    <div id="mimar-sinan"></div>   
+</body>
+</html>
